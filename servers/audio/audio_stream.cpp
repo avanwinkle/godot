@@ -481,6 +481,10 @@ Ref<AudioStream> AudioStreamRandomizer::get_stream(int p_index) const {
 	return audio_stream_pool[p_index].stream;
 }
 
+Ref<AudioStream> AudioStreamRandomizer::get_last_stream() const {
+	return last_playback;
+}
+
 void AudioStreamRandomizer::set_stream_probability_weight(int p_index, float p_weight) {
 	ERR_FAIL_INDEX(p_index, audio_stream_pool.size());
 	audio_stream_pool.write[p_index].weight = p_weight;
@@ -697,6 +701,8 @@ void AudioStreamRandomizer::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("set_playback_mode", "mode"), &AudioStreamRandomizer::set_playback_mode);
 	ClassDB::bind_method(D_METHOD("get_playback_mode"), &AudioStreamRandomizer::get_playback_mode);
+
+	ClassDB::bind_method(D_METHOD("get_last_stream"), &AudioStreamRandomizer::get_last_stream);
 
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "playback_mode", PROPERTY_HINT_ENUM, "Random (Avoid Repeats),Random,Sequential"), "set_playback_mode", "get_playback_mode");
 	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "random_pitch", PROPERTY_HINT_RANGE, "1,16,0.01"), "set_random_pitch", "get_random_pitch");

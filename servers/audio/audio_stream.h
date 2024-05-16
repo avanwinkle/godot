@@ -286,6 +286,8 @@ public:
 	void set_playback_mode(PlaybackMode p_playback_mode);
 	PlaybackMode get_playback_mode() const;
 
+	Ref<AudioStream> get_last_stream() const;
+
 	virtual Ref<AudioStreamPlayback> instantiate_playback() override;
 	virtual String get_stream_name() const override;
 
